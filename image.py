@@ -6,10 +6,10 @@
 # @Software: PyCharm
 # code is far away from bugs with the god animal protecting
 import base64
-import os
+import os,random,string
 from io import BytesIO
 from PIL import Image
-
+import time
 from flask import Flask, request, url_for, Response, make_response
 
 app = Flask(__name__)
@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 @app.route('/save_img', methods=['POST', 'GET'])
 def save_img():
+
     if request.method == 'POST':
         strs = request.form['str']
     else:
@@ -26,11 +27,16 @@ def save_img():
     file = BytesIO()
     file.write(imgdata)
     img = Image.open(file)
-    img.show()
     # 打水印
-    im = add_watermark_to_image(img, Image.open('./waterr.png'))
-    im.show()
-    return 'Hello World!'
+    path=os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time()))+'/')
+    print(path)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    image_name=set_file_name()
+    im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png'))
+    im.save( path+image_name+'.jpg',"JPEG")
+    return  str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+            +'/'+image_name+'.jpg'
 
 
 '''
@@ -50,6 +56,8 @@ def save_img_end():
     file = BytesIO()
     file.write(imgdata)
     img = Image.open(file)
+    if os.path.exists('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time())))):
+        os.mkdir('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time()))),777)
     # 打水印
     img.save('2.jpg')
     return 'Hello World!'
@@ -64,16 +72,22 @@ def add_watermark_to_image(image, watermark):
     # new_size = (int(watermark_x * watermark_scale), int(watermark_y * watermark_scale))
     rgba_watermark = watermark.resize((int(watermark_x * (scale / 100)), int(watermark_y * (scale / 100))),
                                       resample=Image.ANTIALIAS)
-    # 透明度
+    # 透明度z
     watermark_x, watermark_y = rgba_watermark.size
     # 水印位置
     image.paste(rgba_watermark, (image_x - watermark_x - 10, image_y - watermark_y - 3), rgba_watermark)
     return image
 
 
-@app.route('/img/<dir_name>/<name>')
-def img(dir_name, name):
-    image_data = open('./' + dir_name + '/' + name, "rb").read()
+def set_file_name():
+    file_name = time.strftime("%Y%m%d%H%M%S", time.localtime()) + '_' + ''.join(
+        random.sample(string.ascii_letters + string.digits, 8))
+    return file_name
+
+
+@app.route('/img/<dir_m>/<dir_d>/<name>')
+def img(dir_m,dir_d, name):
+    image_data = open(os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + dir_m + '/'+ dir_d + '/' + name, "rb").read()
     response = make_response(image_data)
     response.headers['Content-Type'] = 'image/png'
     print(name)
@@ -82,3 +96,5 @@ def img(dir_name, name):
 
 if __name__ == '__main__':
     app.run()
+
+
