@@ -9,6 +9,7 @@ import base64
 import os,random,string
 from io import BytesIO
 from PIL import Image
+import json
 import time
 from flask import Flask, request, url_for, Response, make_response
 
@@ -35,9 +36,9 @@ def save_img():
     image_name=set_file_name()
     im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png'))
     im.save( path+image_name+'.jpg',"JPEG")
-    return  str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    return_name =str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
-
+    return json.dumps({'code':200,'file':return_name})
 
 '''
     保存最后的图片
@@ -59,8 +60,17 @@ def save_img_end():
     if os.path.exists('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time())))):
         os.mkdir('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time()))),777)
     # 打水印
-    img.save('2.jpg')
-    return 'Hello World!'
+    # 打水印
+    path = os.path.dirname(os.path.realpath(__file__)) + '/2018_img_end/' + str(
+        time.strftime('%m', time.localtime(time.time()))) + '/' + str(
+        time.strftime('%d', time.localtime(time.time())) + '/')
+    print(path)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    image_name = set_file_name()
+    img.save(path + image_name + '.jpg', "JPEG")
+    return json.dumps({'code':200})
+
 
 
 def add_watermark_to_image(image, watermark):
