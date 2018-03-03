@@ -114,15 +114,14 @@ def set_file_name():
 @app.route('/img/<dir_m>/<dir_d>/<name>')
 def img(dir_m,dir_d, name):
     image_data = open(os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + dir_m + '/'+ dir_d + '/' + name, "rb").read()
-    response = make_response(image_data)
-    response.headers['Content-Type'] = 'image/png'
+    rst = make_response(image_data)
+    rst.headers['Content-Type'] = 'image/png'
     rst.headers['Access-Control-Allow-Origin'] = '*'
     rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
     allow_headers = "Referer,Accept,Origin,User-Agent"
     rst.headers['Access-Control-Allow-Headers'] = allow_headers
     return rst
     
-    return response
 
 
 if __name__ == '__main__':
