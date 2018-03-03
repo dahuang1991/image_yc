@@ -12,9 +12,10 @@ from PIL import Image
 import json
 import time
 from flask import Flask, request, url_for, Response, make_response
+from flask_cors import *
 
 app = Flask(__name__)
-
+CORS(app, supports_credentials=True)
 
 @app.route('/save_img', methods=['POST', 'GET'])
 def save_img():
@@ -75,7 +76,14 @@ def save_img_end():
         os.makedirs(path)
     image_name = set_file_name()
     img.save(path + image_name + '.jpg', "JPEG")
-    return json.dumps({'code':200})
+    result_text=json.dumps({'code':200,})
+    rst = make_response(result_text)
+    rst.headers['Access-Control-Allow-Origin'] = '*'
+    rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    allow_headers = "Referer,Accept,Origin,User-Agent"
+    rst.headers['Access-Control-Allow-Headers'] = allow_headers
+    return rst
+    
 
 
 
@@ -98,6 +106,8 @@ def add_watermark_to_image(image, watermark):
 def set_file_name():
     file_name = time.strftime("%Y%m%d%H%M%S", time.localtime()) + '_' + ''.join(
         random.sample(string.ascii_letters + string.digits, 8))
+
+        
     return file_name
 
 
@@ -106,7 +116,12 @@ def img(dir_m,dir_d, name):
     image_data = open(os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + dir_m + '/'+ dir_d + '/' + name, "rb").read()
     response = make_response(image_data)
     response.headers['Content-Type'] = 'image/png'
-    print(name)
+    rst.headers['Access-Control-Allow-Origin'] = '*'
+    rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    allow_headers = "Referer,Accept,Origin,User-Agent"
+    rst.headers['Access-Control-Allow-Headers'] = allow_headers
+    return rst
+    
     return response
 
 
