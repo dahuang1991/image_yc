@@ -38,7 +38,13 @@ def save_img():
     im.save( path+image_name+'.jpg',"JPEG")
     return_name  = 'http://23.106.148.45:9009/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
-    return json.dumps({'code':200,'file':return_name})
+    result_text=json.dumps({'code':200,'file':return_name})
+    rst = make_response(result_text)
+    rst.headers['Access-Control-Allow-Origin'] = '*'
+    # rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    # allow_headers = "Referer,Accept,Origin,User-Agent"
+    # rst.headers['Access-Control-Allow-Headers'] = allow_headers
+    return rst
 
 '''
     保存最后的图片
