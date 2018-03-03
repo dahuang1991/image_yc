@@ -41,9 +41,9 @@ def save_img():
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
     rst.headers['Access-Control-Allow-Origin'] = '*'
-    # rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
-    # allow_headers = "Referer,Accept,Origin,User-Agent"
-    # rst.headers['Access-Control-Allow-Headers'] = allow_headers
+    rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    allow_headers = "Referer,Accept,Origin,User-Agent"
+    rst.headers['Access-Control-Allow-Headers'] = allow_headers
     return rst
 
 '''
