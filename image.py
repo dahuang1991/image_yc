@@ -36,7 +36,7 @@ def save_img():
     image_name=set_file_name()
     im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png'))
     im.save( path+image_name+'.jpg',"JPEG")
-    return_name =str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    return_name  = 'http://23.106.148.45:9009/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     return json.dumps({'code':200,'file':return_name})
 
