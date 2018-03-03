@@ -16,7 +16,7 @@ from flask_cors import *
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-
+app.debug=True
 @app.route('/save_img', methods=['POST', 'GET'])
 def save_img():
 
@@ -125,6 +125,6 @@ def img(dir_m,dir_d, name):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0',80)
 
 
