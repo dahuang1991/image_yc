@@ -35,7 +35,7 @@ def save_img():
     if not os.path.exists(path):
         os.makedirs(path)
     image_name=set_file_name()
-    im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png'))
+    im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png').convert("RGBA"))
     im.save( path+image_name+'.jpg',"JPEG")
     return_name  = 'http://47.94.212.232/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
