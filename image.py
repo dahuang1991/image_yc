@@ -28,7 +28,7 @@ def save_img():
     imgdata = base64.b64decode(strs)
     file = BytesIO()
     file.write(imgdata)
-    img = Image.open(file).convert("RGBA")
+    img = Image.open(file).convert("RGB")
     # 打水印
     path=os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time()))+'/')
     print(path)
