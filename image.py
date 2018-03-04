@@ -28,7 +28,7 @@ def save_img():
     imgdata = base64.b64decode(strs)
     file = BytesIO()
     file.write(imgdata)
-    img = Image.open(file)
+    img = Image.open(file).convert("RGBA")
     # 打水印
     path=os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time()))+'/')
     print(path)
@@ -36,7 +36,7 @@ def save_img():
         os.makedirs(path)
     image_name=set_file_name()
     im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png').convert("RGBA"))
-    im.save( path+image_name+'.jpg',"JPEG")
+    im.save( path+image_name+'.jpg')
     return_name  = 'http://47.94.212.232/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
