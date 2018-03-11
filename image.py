@@ -38,8 +38,10 @@ def save_img():
         os.makedirs(path)
     image_name=set_file_name()
     im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png').convert("RGBA"))
-    im.save( path+image_name+'.jpg')
-    return_name  = host+'/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    save_args={}
+    save_args['quality'] = 85
+    im.save( path+image_name+'.jpg',**save_args)
+    return_name  = request.host+'/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
@@ -76,7 +78,7 @@ def save_img_end():
         os.makedirs(path)
     image_name = set_file_name()
     img.save(path + image_name + '.jpg', "JPEG")
-    return_name  =  host+'/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    return_name  =  request.host+'/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
@@ -147,6 +149,7 @@ def img_end(dir_m,dir_d, name):
     return rst
 @app.route('/pic')
 def html():
+
     return render_template('explain.html')
 
 

@@ -3,7 +3,7 @@
  */
 
 var baseinfo;
-var http_url = "http://47.94.212.232:80/";
+var http_url = "";
 $("#imgloader input").change(function(event){
     $(".shadeBox").fadeIn();
     var oFile = event.target.files[0];
