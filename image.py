@@ -76,7 +76,8 @@ def save_img_end():
         os.makedirs(path)
     image_name = set_file_name()
     img.save(path + image_name + '.jpg', "JPEG")
-    result_text=json.dumps({'code':200,})
+    return_name='/img_end'+ '/'+path + image_name + '.jpg'
+    result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
     rst.headers['Access-Control-Allow-Origin'] = '*'
     rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
@@ -121,8 +122,17 @@ def img(dir_m,dir_d, name):
     allow_headers = "Referer,Accept,Origin,User-Agent"
     rst.headers['Access-Control-Allow-Headers'] = allow_headers
     return rst
-    
 
+@app.route('/img_end/<dir_m>/<dir_d>/<name>')
+def img(dir_m,dir_d, name):
+    image_data = open(os.path.dirname(os.path.realpath(__file__))+'/2018_img_end/' + dir_m + '/'+ dir_d + '/' + name, "rb").read()
+    rst = make_response(image_data)
+    rst.headers['Content-Type'] = 'image/png'
+    rst.headers['Access-Control-Allow-Origin'] = '*'
+    rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    allow_headers = "Referer,Accept,Origin,User-Agent"
+    rst.headers['Access-Control-Allow-Headers'] = allow_headers
+    return rst
 
 if __name__ == '__main__':
     app.run('0.0.0.0',80)
