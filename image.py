@@ -66,8 +66,7 @@ def save_img_end():
     file = BytesIO()
     file.write(imgdata)
     img = Image.open(file)
-    if os.path.exists('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time())))):
-        os.mkdir('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time()))),777)
+
     # 打水印
     # 打水印
     path = os.path.dirname(os.path.realpath(__file__)) + '/2018_img/' + str(
