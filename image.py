@@ -16,7 +16,7 @@ from io import BytesIO
 from PIL import Image
 from flask import Flask, request, make_response,render_template
 from flask_cors import *
-
+host='http://www.touch1.top/pic'
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.debug=True
@@ -39,7 +39,7 @@ def save_img():
     image_name=set_file_name()
     im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png').convert("RGBA"))
     im.save( path+image_name+'.jpg')
-    return_name  = 'http://47.94.212.232/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    return_name  = host+'/img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
@@ -76,7 +76,7 @@ def save_img_end():
         os.makedirs(path)
     image_name = set_file_name()
     img.save(path + image_name + '.jpg', "JPEG")
-    return_name  = 'http://47.94.212.232/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    return_name  =  host+'w/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
