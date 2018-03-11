@@ -65,7 +65,7 @@ def save_img_end():
     imgdata = base64.b64decode(strs)
     file = BytesIO()
     file.write(imgdata)
-    img = Image.open(file)
+    img = Image.open(file).convert("RGB")
 
     # 打水印
     # 打水印
@@ -85,7 +85,6 @@ def save_img_end():
     allow_headers = "Referer,Accept,Origin,User-Agent"
     rst.headers['Access-Control-Allow-Headers'] = allow_headers
     return rst
-    
 
 
 
