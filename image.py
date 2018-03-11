@@ -60,7 +60,7 @@ def save_img_end():
     else:
         return '参数错误'
     # 接收图片
-    imgdata = base64.b64decode(str)
+    imgdata = base64.b64decode(strs)
     file = BytesIO()
     file.write(imgdata)
     img = Image.open(file)
