@@ -6,12 +6,15 @@
 # @Software: PyCharm
 # code is far away from bugs with the god animal protecting
 import base64
-import os,random,string
-from io import BytesIO
-from PIL import Image
 import json
+import os
+import random
+import string
 import time
-from flask import Flask, request, url_for, Response, make_response
+from io import BytesIO
+
+from PIL import Image
+from flask import Flask, request, make_response
 from flask_cors import *
 
 app = Flask(__name__)
@@ -67,15 +70,15 @@ def save_img_end():
         os.mkdir('./2018_img_end/'+str(time.strftime('%m',time.localtime(time.time()))),777)
     # 打水印
     # 打水印
-    path = os.path.dirname(os.path.realpath(__file__)) + '/2018_img_end/' + str(
-            time.strftime('%m', time.localtime(time.time()))) + '/' + str(
-            time.strftime('%d', time.localtime(time.time())) + '/')
-
+    path = os.path.dirname(os.path.realpath(__file__)) + '/2018_img/' + str(
+        time.strftime('%m', time.localtime(time.time()))) + '/' + str(
+        time.strftime('%d', time.localtime(time.time())) + '/')
     if not os.path.exists(path):
         os.makedirs(path)
     image_name = set_file_name()
     img.save(path + image_name + '.jpg', "JPEG")
-    return_name='/img_end'+ '/'+path + image_name + '.jpg'
+    return_name  = 'http://47.94.212.232/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+            +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
     rst.headers['Access-Control-Allow-Origin'] = '*'
@@ -134,6 +137,6 @@ def img_end(dir_m,dir_d, name):
     return rst
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',80)
+    app.run('0.0.0.0',8000)
 
 
