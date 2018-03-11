@@ -145,7 +145,7 @@ def img_end(dir_m,dir_d, name):
     allow_headers = "Referer,Accept,Origin,User-Agent"
     rst.headers['Access-Control-Allow-Headers'] = allow_headers
     return rst
-@app.route('/')
+@app.route('/pic')
 def html():
     return render_template('explain.html')
 
