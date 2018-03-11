@@ -14,7 +14,7 @@ import time
 from io import BytesIO
 
 from PIL import Image
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response,render_template
 from flask_cors import *
 
 app = Flask(__name__)
@@ -111,6 +111,18 @@ def set_file_name():
         
     return file_name
 
+@app.route('/img/<name>')
+def static_img(name):
+    image_data = open(os.path.dirname(os.path.realpath(__file__)) + '/static/img/' + name,
+                      "rb").read()
+    rst = make_response(image_data)
+    rst.headers['Content-Type'] = 'image/png'
+    rst.headers['Access-Control-Allow-Origin'] = '*'
+    rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+    allow_headers = "Referer,Accept,Origin,User-Agent"
+    rst.headers['Access-Control-Allow-Headers'] = allow_headers
+    return rst
+
 
 @app.route('/img/<dir_m>/<dir_d>/<name>')
 def img(dir_m,dir_d, name):
@@ -133,6 +145,10 @@ def img_end(dir_m,dir_d, name):
     allow_headers = "Referer,Accept,Origin,User-Agent"
     rst.headers['Access-Control-Allow-Headers'] = allow_headers
     return rst
+@app.route('/')
+def html():
+    return render_template('explain.html')
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0',8000)

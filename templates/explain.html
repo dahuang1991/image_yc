@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NU SKIN</title>
+    <script src="{{ url_for('static', filename='js/flexibles.js') }}" type="text/javascript"></script>
+    <link href="{{ url_for('static', filename='css/css.css') }}" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <div class="saveImg">制作完成</div>
+        <div class="imgContent real">
+            <img class="imgbg" src="{{ url_for('static', filename='img/oimg.png') }}"><br>
+            <span class="explain">点击选择图片或拍照</span>
+            <form enctype="multipart/form-data" method="post" id="imgloader">
+                <input type="file" class="absol putnone" name="file"
+                       accept="image/jpeg, image/png, image/jpg">
+            </form>
+        </div>
+        <div id="myImg" class="real">
+
+        </div>
+        <div class="tagImg none">
+            <div class="flexLay">
+                <div class="tagType">选择滤镜</div>
+                <div class="tagType">选择贴纸</div>
+                <div class="tagType">添加文字</div>
+            </div>
+            <div class="typeBox">
+                <div class="typeltem filter overf-h">
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/one.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/two.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/three.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/fourth.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/five.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/six.png') }}">
+                    </div>
+                </div>
+                <div class="typeltem paper">
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/bluestar.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/bigstar.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/pkstar.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/yelstar.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/bao.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/callman.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/hah.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/happy.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/hi.png') }}">
+                    </div>
+                    <div class="left">
+                        <img src="{{ url_for('static', filename='img/here.png') }}">
+                    </div>
+                    <div class="left textWidth">
+                        <img src="{{ url_for('static', filename='img/textleft.png') }}">
+                    </div>
+                    <div class="left textWidth">
+                        <img src="{{ url_for('static', filename='img/you.png') }}">
+                    </div>
+                    <div class="left textWidth">
+                        <img src="{{ url_for('static', filename='img/colortext.png') }}">
+                    </div>
+                    <div class="left textWidth">
+                        <img src="{{ url_for('static', filename='img/bigtext.png') }}">
+                    </div>
+                </div>
+                <div class="typeltem addtext " style="display: block">
+                    <input type="text" maxlength="12" class="oinput left" placeholder="最多输入12个字">
+                    <div class="left tybtn" id="deltbox">删除</div>
+                    <div class="right tybtn" id="addtbox">添加</div>
+                    <div class="textColor overf-h">
+                        <p class="red left"></p>
+                        <p class="blue left"></p>
+                        <p class="green left"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="absol shadeBox">
+    <img src="{{ url_for('static', filename='img/loade2.gif') }}"><br>
+    加载中～
+</div>
+</body>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/exif.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/es6-promise.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/html2canvas.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/makeImg.js') }}" type="text/javascript"></script>
+</html>
