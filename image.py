@@ -76,7 +76,7 @@ def save_img_end():
         os.makedirs(path)
     image_name = set_file_name()
     img.save(path + image_name + '.jpg', "JPEG")
-    return_name  =  host+'w/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
+    return_name  =  host+'/img_end/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
     rst = make_response(result_text)
