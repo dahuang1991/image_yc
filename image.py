@@ -124,7 +124,7 @@ def img(dir_m,dir_d, name):
     return rst
 
 @app.route('/img_end/<dir_m>/<dir_d>/<name>')
-def img(dir_m,dir_d, name):
+def img_end(dir_m,dir_d, name):
     image_data = open(os.path.dirname(os.path.realpath(__file__))+'/2018_img_end/' + dir_m + '/'+ dir_d + '/' + name, "rb").read()
     rst = make_response(image_data)
     rst.headers['Content-Type'] = 'image/png'
