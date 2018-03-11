@@ -31,7 +31,6 @@ def save_img():
     img = Image.open(file).convert("RGB")
     # 打水印
     path=os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time()))+'/')
-    print(path)
     if not os.path.exists(path):
         os.makedirs(path)
     image_name=set_file_name()
@@ -69,9 +68,9 @@ def save_img_end():
     # 打水印
     # 打水印
     path = os.path.dirname(os.path.realpath(__file__)) + '/2018_img_end/' + str(
-        time.strftime('%m', time.localtime(time.time()))) + '/' + str(
-        time.strftime('%d', time.localtime(time.time())) + '/')
-    print(path)
+            time.strftime('%m', time.localtime(time.time()))) + '/' + str(
+            time.strftime('%d', time.localtime(time.time())) + '/')
+
     if not os.path.exists(path):
         os.makedirs(path)
     image_name = set_file_name()
