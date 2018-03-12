@@ -33,6 +33,7 @@ def save_img():
     file.write(imgdata)
     img = Image.open(file).convert("RGB")
     # 打水印
+
     path=os.path.dirname(os.path.realpath(__file__))+'/2018_img/' + str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time()))+'/')
     if not os.path.exists(path):
         os.makedirs(path)
@@ -40,7 +41,7 @@ def save_img():
     im = add_watermark_to_image(img, Image.open(os.path.dirname(os.path.realpath(__file__))+'/waterr.png').convert("RGBA"))
     save_args={}
     save_args['quality'] = 85
-    im.save( path+image_name+'.jpg',**save_args)
+
     return_name  = request.host_url+'img/'+str(time.strftime('%m', time.localtime(time.time())))+'/'+str(time.strftime('%d', time.localtime(time.time())))\
             +'/'+image_name+'.jpg'
     result_text=json.dumps({'code':200,'file':return_name})
@@ -154,6 +155,6 @@ def html():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',80)
+    app.run('0.0.0.0',8000)
 
 
