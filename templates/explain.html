@@ -13,8 +13,9 @@
             <img class="imgbg" src="{{ url_for('static', filename='img/oimg.png') }}"><br>
             <span class="explain">点击选择图片或拍照</span>
             <form enctype="multipart/form-data" method="post" id="imgloader">
+
                 <input type="file" class="absol putnone" name="file"
-                       accept="image/jpeg, image/png, image/jpg">
+                       accept="image/jpeg, image/png, image/jpg" capture="camera">
             </form>
         </div>
         <div id="myImg" class="real">
