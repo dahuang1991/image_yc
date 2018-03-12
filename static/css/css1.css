@@ -1,0 +1,353 @@
+*{margin:0; padding:0; box-sizing: border-box;}
+body{font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;}
+/*"Helvetica Neue",Helvetica,Arial,'Microsoft YaHei',sans-serif*/
+body,ul,ol,li,p,button,form{margin:0;padding:0;list-style: none;}
+a{color: #fff;text-decoration: none;cursor: pointer;}
+a:hover, a:active{text-decoration: none;}
+h1, h2, h3, h4, h5, h6{font-weight: 500; line-height: 1.1; margin: 0; padding:0;}
+textarea{resize:none;}
+a,input,button,select,textarea{outline: none;}
+input[type="text"], input[type="password"], input[type="tel"],input[type="number"], textarea{
+    -webkit-appearance:none; border: none;
+}
+img{vertical-align: middle; border: none; max-width: 100%;}
+button{border: none;}
+input, button, select, textarea {font-family: inherit; font-size: inherit; line-height: inherit;}
+
+/*这一句是用来解决在安卓上的点击出现篮框问题*/
+
+body{ -webkit-tap-highlight-color:rgba(0,0,0,0); }
+
+/*下面是解决ios上去除微信点击蓝色边框 */
+a:focus, input:focus, p:focus, div:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.inblock{display: inline-block;}
+.overf-h{overflow: hidden;}
+.real{position: relative;}
+.absol{position: absolute;}
+.right{float: right;}
+.left{float: left;}
+.hzero{display:block;width: 100%; height: 0; padding: 0 0.2rem;}
+.Mapimg{display:block;width: 100%; height: 6.36rem; padding: 0 0.2rem;}
+.wimg{width: 100%; height: auto;}
+.flexw{
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex;
+    -webkit-justify-content:space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.flexwC{
+    -webkit-justify-content:center;
+    justify-content: center;
+}
+.flexwS{
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.transte{
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+[data-dpr='1'] .shadeBox{
+    font-size: 16px;
+}
+[data-dpr='3'] .shadeBox{
+    font-size: 48px;
+}
+.shadeBox{
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.34);
+    z-index: 800;
+    text-align: center;
+    font-size: 28px;
+    color: #fff;
+}
+.shadeBox img{
+    margin: 60% auto;
+    margin-bottom: 0;
+    width: 2rem;
+}
+html{
+    background: #ea524e;
+}
+.header{
+    width: 100%;
+    height: 0.7rem;
+}
+.content{
+    text-align: center;
+    padding-bottom: 4.5rem;
+}
+.imgContent{
+    margin-top: 30%;
+}
+.imgbg{
+    margin-bottom: 0.3rem;
+    width: 35%;
+}
+[data-dpr='1'] .explain{
+    font-size: 14px;
+}
+[data-dpr='3'] .explain{
+    font-size: 46px;
+}
+.explain{
+    font-size: 26px;
+    color: #f0ffff;
+}
+
+.putnone{
+    top: 0;
+    left: 50%;
+    margin-left: -17%;
+    width: 35%;
+    height: 100%;
+    z-index: 66;
+    opacity: 0;
+}
+#myImg{
+    display: none;
+    width: 100%;
+    height: auto;
+}
+.photo{
+    width: 100%;
+    height: auto;
+}
+[data-dpr='1'] .tagImg {
+    font-size: 14px;
+}
+[data-dpr='3'] .tagImg {
+    font-size: 46px;
+}
+.tagImg{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height:4.4rem;
+    text-align: center;
+    color: #f0ffff;
+    font-size: 26px;
+    z-index: 668;
+
+}
+.flexLay{
+    display: flex;
+}
+.tagType{
+    flex:1;
+    border: 1px solid #f0ffff;
+    padding: 0.15rem;
+    border-radius: 8px;
+    background: rgba(0,0,0,.7);
+}
+.typeBox{
+    width: 100%;
+    background: #3b3838;
+    overflow-x: auto;
+}
+.shadeImg{
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+}
+.typeltem{
+    display: flex;
+    padding: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+}
+.filter div{
+    flex: 1;
+    margin-right: 0.3rem;
+    width: 1rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.typeltem div:last-child{
+    margin-right: 0;
+}
+.typeltem .check{
+    border: 2px solid #e3f51b;
+}
+.filter div img,.paper div img{
+    width: 100%;
+}
+.showHeight{
+    height: auto;
+    padding: 0.3rem;
+}
+.paper{
+    min-width: 260%;
+}
+.paper div{
+    flex: 1;
+    width: 1rem;
+    margin-right: 0.3rem;
+    border: 1px solid #eee;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.paper .textWidth{
+    flex: 3;
+}
+.opaperImg{
+    display: inline-block;
+    top: 30%;
+    left: 30%;
+    margin: auto;
+    z-index: 88;
+}
+.opaperText{
+    left: 0;
+}
+.opaperImg .tpaper{
+    width: 1.3rem;
+}
+.opaperImg .mpaper{
+    width: 2.3rem;
+}
+.opaperImg .stpaper{
+    width: 3rem;
+}
+.opaperImg .bigpaper{
+    width: 7rem;
+}
+
+.closeImg,.closeText{
+    display: none;
+    top: -0.3rem;
+    right: -0.3rem;
+    width: 0.7rem;
+}
+.opaperImgCheck .closeImg,.opaperImgCheck .closeText{
+    display: block;
+}
+[data-dpr='1'] .oinput {
+    font-size: 17px;
+}
+[data-dpr='3'] .oinput {
+    font-size: 56px;
+}
+.oinput{
+    font-size: 36px;
+    padding: 0.1rem;
+    width: 5.6rem;
+    height: 0.78rem;
+    line-height: 0.6rem;
+    margin-bottom: 0.4rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.textColor{
+    width: 100%;
+}
+.textColor p{
+    width: 20%;
+    height: 0.6rem;
+    margin-right: 20%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.textColor p:last-child{
+    margin-right: 0;
+}
+.tybtn{
+    width: 1.8rem;
+    height: 0.78rem;
+    padding: 0.1rem;
+    border: 1px solid #989696;
+    color: #989696;
+    border-radius: 7%;
+    overflow: hidden;
+}
+.btnClick{ color:#fff; border: 1px solid #fff;}
+.tybtn:first-child{
+    margin-left: 0.3rem;
+}
+.red{ background: #e61010;}
+.blue{ background: #107ee6;}
+.green{ background: #10e66b;}
+[data-dpr='1'] .textPaper {
+    font-size: 26px;
+}
+[data-dpr='3'] .textPaper {
+    font-size: 86px;
+}
+.textPaper{
+    top: 30%;
+    left: 0;
+    margin: auto;
+    z-index: 88;
+    font-size: 66px;
+}
+.opaperImgCheck{
+    z-index: 188;
+    border: 1px dashed #070707;
+}
+
+.textColor .checkP{
+    border: 2px solid #e3f51b;
+}
+[data-dpr='1'] .saveImg {
+    font-size: 16px;
+}
+[data-dpr='3'] .saveImg {
+    font-size: 46px;
+}
+.saveImg{
+    display: none;
+    position: fixed;
+    top: 0.3rem;
+    right: 0.3rem;
+    padding: 0.2rem;
+    background: #43ba2a;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+    border-radius: 8px;
+    z-index: 566;
+}
+[data-dpr='1'] .textInfo {
+    font-size: 15px;
+}
+[data-dpr='3'] .textInfo {
+    font-size: 48px;
+}
+.textInfo{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0.2rem;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    text-align: left;
+    font-size: 28px;
+    z-index: 566;
+}
